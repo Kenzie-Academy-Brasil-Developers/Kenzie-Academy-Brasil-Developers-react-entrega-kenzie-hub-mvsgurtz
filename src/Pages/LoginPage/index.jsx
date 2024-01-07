@@ -1,7 +1,14 @@
 import style from "./style.module.scss";
 import Logo from "../../assets/Logo.svg";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
+  const navigate = useNavigate();
+
+  const redirect = () =>{
+    navigate("/Register");
+  }
+
   return (
     <main className={style.login__main} >
       <img src={Logo} alt="Logo" />
@@ -16,7 +23,7 @@ export const LoginPage = () => {
         </div>
         <div className={style.register__acess}>
           <p>Ainda nao possui uma conta?</p>
-          <button className={style.register__btn}>Cadastre-se</button>
+          <button className={style.register__btn} onClick={redirect}>Cadastre-se</button>
         </div>
       </div>
     </main>
