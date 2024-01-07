@@ -3,7 +3,7 @@ import Logo from "../../assets/Logo.svg";
 
 export const LoginPage = () => {
   return (
-    <main>
+    <main className={style.login__main} >
       <img src={Logo} alt="Logo" />
       <div className={style.login__container}>
         <h3>Login</h3>
@@ -16,7 +16,7 @@ export const LoginPage = () => {
         </div>
         <div className={style.register__acess}>
           <p>Ainda nao possui uma conta?</p>
-          <button className={style.register__btn}>Cadastrar-se</button>
+          <button className={style.register__btn}>Cadastre-se</button>
         </div>
       </div>
     </main>

@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import { LoginPage } from './Pages/LoginPage'
 import "./Styles/index.scss"
+import { RoutesMain } from './Routes/Route'
 
 function App() {
 
 
   return (
     <>
-      <LoginPage />
+      <RoutesMain/>
     </>
   )
 }
