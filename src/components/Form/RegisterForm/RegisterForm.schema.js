@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const registerFormSchema = z
+export const registerFormSchema = z
   .object({
     name: z.string().min(1, "Este campo é obrigatório."),
     email: z
@@ -16,16 +16,14 @@ const registerFormSchema = z
     confirmPassword: z.string().min(1, "Confirmar a senha é obrigatório."),
     bio: z.string().min(1, "Este campo é obrigatório."),
     contact: z.string().min(1, "Este campo é obrigatório."),
-    module: z.string().min(1, "Este campo é obrigatório."),
+    course_module: z.string().min(1, "Este campo é obrigatório."),
   })
   
   .refine(({ password, confirmPassword }) => password === confirmPassword, {
     message: "As senhas não correspondem.",
     path: ["confirmPassword"],
-  })
-  .refine(({ name, password }) => !password.includes(name), {
-    message: "A senha não pode conter seu nome.",
-    path: ["password"],
   });
-
-export { registerFormSchema };
+  // .refine(({ name, password }) => !password.includes(name), {
+  //   message: "A senha não pode conter seu nome.",
+  //   path: ["password"],
+  // });

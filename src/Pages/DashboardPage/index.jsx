@@ -1,18 +1,18 @@
 import style from "./style.module.scss";
 import Logo from "../../assets/Logo.svg";
 
-export const DashboardPage = () => {
+export const DashboardPage = ({user, userLogout}) => {
   return (
     <>
       <header>
         <div className={style.header__info}>
           <img src={Logo} alt="" />
-          <button>Sair</button>
+          <button onClick={userLogout}>Sair</button>
         </div>
       </header>
       <div className={style.introduction__info}>
-        <p className={style.info__person}> Olá, </p>
-        <p className={style.info__module}>Módulo</p>
+        <p className={style.info__person}> Olá, {user.name} </p>
+        <p className={style.info__module}>{user.course_module}</p>
       </div>
       <main className={style.main__container}>
         <div className={style.main__content}>
