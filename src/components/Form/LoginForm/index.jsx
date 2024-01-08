@@ -5,6 +5,7 @@ import { api } from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Input } from "../Input";
+import { useState } from "react";
 
 export const LoginForm = ({ setUser, styleName }) => {
   const {
@@ -15,29 +16,42 @@ export const LoginForm = ({ setUser, styleName }) => {
     resolver: zodResolver(loginFormSchema),
   });
 
+  const [loadingLogin, setLoadingLogin] = useState("Entrar");
+
   const navigate = useNavigate();
 
   const onSubmit = (formData) => {
     userLogin(formData);
   };
 
+
   const userLogin = async (formData) => {
     try {
+
       const { data } = await api.post("/sessions", formData);
-      console.log(data);
+      setLoadingLogin("Entrando...")
       setUser(data.user);
+      localStorage.setItem("@TOKEN", data.token);
+      localStorage.setItem("@Name", data.user.name);
+      localStorage.setItem("@CourseModule", data.user.course_module);
+      toast.success("Login Efetuado com sucesso!");
+      setTimeout(() => { 
+        navigate("/Dashboard");
+        setLoadingLogin("Entrar");
+      }, 2*1000)
+     
       
-      navigate("/Dashboard");
     } catch (error) {
       console.log(error);
+      toast.error("Credenciais inválidas!");
     }
   };
 
   return (
     <form className={styleName} onSubmit={handleSubmit(onSubmit)}>
-      <Input label="Email" type="email" placeholder="Digite seu Email" {...register("email")}/>
-      <Input label="Senha" type="password" placeholder="Digite sua Senha" {...register("password")} />
-      <button type="submit">Entrar</button>
+      <Input label="Email" type="email" placeholder="Digite seu Email" {...register("email")} error={errors.email}/>
+      <Input label="Senha" type="password" placeholder="Digite sua Senha" {...register("password")} error={errors.password}/>
+      <button type="submit">{loadingLogin}</button>
     </form>
   );
 };

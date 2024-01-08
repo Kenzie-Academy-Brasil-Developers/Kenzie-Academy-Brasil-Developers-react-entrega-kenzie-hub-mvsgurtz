@@ -10,6 +10,7 @@ function App() {
   return (
     <>
       <RoutesMain/>
+      <ToastContainer theme='dark' />
     </>
   )
 }

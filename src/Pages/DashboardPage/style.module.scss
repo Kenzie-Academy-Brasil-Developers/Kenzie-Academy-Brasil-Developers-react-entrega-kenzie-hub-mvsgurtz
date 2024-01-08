@@ -85,3 +85,14 @@ header {
   
   }
 }
+
+@media (max-width: 425px){
+  .header__info, .main__content,  .introduction__info{
+    width: 85%;
+  }
+
+  .introduction__info {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}

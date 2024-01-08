@@ -13,8 +13,12 @@ export const RoutesMain = () => {
   const userLogout = () => {
     setUser(null)
     navigate("/");
+    localStorage.removeItem("@TOKEN");
+    localStorage.removeItem("@Name");
+    localStorage.removeItem("@CourseModule");
   }
 
+  
 
   
   return (

@@ -121,3 +121,13 @@ main {
         background-color: var(--color-primary-focus);
       }
 }
+
+@media (max-width:425px) {
+  .register__container {
+    width: 100%;
+  }
+
+  .header__register {
+    width:  111%;
+  }
+}
