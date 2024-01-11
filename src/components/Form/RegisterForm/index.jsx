@@ -1,13 +1,16 @@
 import { useForm } from "react-hook-form";
 import { Input } from "../Input";
-import { useNavigate } from "react-router-dom";
 import { registerFormSchema } from "./RegisterForm.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { api } from "../../../services/api";
-import { toast } from "react-toastify";
+import { useContext } from "react";
+import { userContext } from "../../../provider/User";
+
+
+
 
 export const RegisterForm = ({ styleName }) => {
+  const {userRegister , loadingRegister} = useContext(userContext);
+  
   const {
     register,
     handleSubmit,
@@ -15,27 +18,9 @@ export const RegisterForm = ({ styleName }) => {
   } = useForm({
     resolver: zodResolver(registerFormSchema),
   });
-  const navigate = useNavigate();
-
-  const [loadingRegister, setLoadingRegister] = useState("Cadastrar");
-
-  const userRegister = async (formData) => {
-    try {
-      setLoadingRegister("Cadastrando...");
-      const { data } = await api.post("/users", formData);
-      toast.success("Usuário cadastrado com sucesso!");
-      setTimeout(() => {
-        navigate("/");
-        setLoadingRegister("Cadastrar");
-      }, 2*1000)
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const onSubmit = (formData) => {
     userRegister(formData);
-    
   };
 
   return (

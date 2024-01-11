@@ -1,14 +1,15 @@
 import style from "./style.module.scss";
 import Logo from "../../assets/Logo.svg";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { userContext } from "../../provider/User";
 
-export const DashboardPage = ({ userLogout }) => {
+export const DashboardPage = ({ }) => {
   const [User, setVerificationUser] = useState(localStorage.getItem("@Name"));
   const [Module, setVerificationModule] = useState(
     localStorage.getItem("@CourseModule")
   );
-  console.log(User);
-  return (
+    const {userLogout} = useContext(userContext);
+      return (
     <>
       <header>
         <div className={style.header__info}>

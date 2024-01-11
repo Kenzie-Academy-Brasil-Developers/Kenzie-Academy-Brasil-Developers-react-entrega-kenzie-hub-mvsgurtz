@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginFormSchema } from "./loginForm.schema";
-import { api } from "../../../services/api";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { Input } from "../Input";
-import { useState } from "react";
+import { useContext } from "react";
+import { userContext } from "../../../provider/User";
 
-export const LoginForm = ({ setUser, styleName }) => {
+export const LoginForm = ({ styleName }) => {
+
+  const {userLogin, loadingLogin} = useContext(userContext);
+
   const {
     register,
     handleSubmit,
@@ -16,36 +17,10 @@ export const LoginForm = ({ setUser, styleName }) => {
     resolver: zodResolver(loginFormSchema),
   });
 
-  const [loadingLogin, setLoadingLogin] = useState("Entrar");
-
-  const navigate = useNavigate();
-
   const onSubmit = (formData) => {
     userLogin(formData);
   };
-
-
-  const userLogin = async (formData) => {
-    try {
-
-      const { data } = await api.post("/sessions", formData);
-      setLoadingLogin("Entrando...")
-      setUser(data.user);
-      localStorage.setItem("@TOKEN", data.token);
-      localStorage.setItem("@Name", data.user.name);
-      localStorage.setItem("@CourseModule", data.user.course_module);
-      toast.success("Login Efetuado com sucesso!");
-      setTimeout(() => { 
-        navigate("/Dashboard");
-        setLoadingLogin("Entrar");
-      }, 2*1000)
-     
-      
-    } catch (error) {
-      console.log(error);
-      toast.error("Credenciais inválidas!");
-    }
-  };
+ 
 
   return (
     <form className={styleName} onSubmit={handleSubmit(onSubmit)}>

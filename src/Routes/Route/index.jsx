@@ -6,26 +6,12 @@ import { useState } from "react";
 import { NotFound } from "../../Pages/NotFoundPage";
 
 export const RoutesMain = () => {
-  const [user, setUser] = useState(null);
 
-  const navigate = useNavigate();
-
-  const userLogout = () => {
-    setUser(null)
-    navigate("/");
-    localStorage.removeItem("@TOKEN");
-    localStorage.removeItem("@Name");
-    localStorage.removeItem("@CourseModule");
-  }
-
-  
-
-  
   return (
     <Routes>
-      <Route path="/" element={<LoginPage setUser={setUser}/>} />
-      <Route path="/Register" element={<RegisterPage setUser={setUser} />}  />
-      <Route path="/Dashboard" element={<DashboardPage userLogout={userLogout} user={user} />} />
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/Register" element={<RegisterPage  />}  />
+      <Route path="/Dashboard" element={<DashboardPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
