@@ -23,7 +23,3 @@ export const registerFormSchema = z
     message: "As senhas não correspondem.",
     path: ["confirmPassword"],
   });
-  // .refine(({ name, password }) => !password.includes(name), {
-  //   message: "A senha não pode conter seu nome.",
-  //   path: ["password"],
-  // });
