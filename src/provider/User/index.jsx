@@ -1,4 +1,4 @@
-import { createContext} from "react";
+import { createContext, useEffect} from "react";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -14,6 +14,34 @@ export const UserProvider = ({ children }) => {
 
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const loadUser = async () => {
+
+      const token = localStorage.getItem("@TOKEN");
+      const userID =  localStorage.getItem("@Name");
+      const userModule = localStorage.getItem("@CourseModule");
+      
+      if (token) {
+        try {
+          const {data} = await api.get(`/profile`, {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          })
+          setUser(data);
+          navigate("/Dashboard")
+        } catch (error) {
+          console.log(error);
+          localStorage.removeItem("@TOKEN");
+          localStorage.removeItem("@Name");
+          localStorage.removeItem("@CourseModule");
+        }
+      }
+      
+    };
+    loadUser();
+  }, [])
 
 
 
