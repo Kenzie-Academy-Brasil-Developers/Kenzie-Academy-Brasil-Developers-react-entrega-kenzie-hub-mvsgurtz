@@ -1,17 +1,21 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { LoginPage } from "../../Pages/LoginPage";
 import { RegisterPage } from "../../Pages/RegisterPage";
 import { DashboardPage } from "../../Pages/DashboardPage";
-import { useState } from "react";
 import { NotFound } from "../../Pages/NotFoundPage";
+import { PublicRoute } from "../PublicRoutes";
+import { PrivateRoute } from "../PrivateRoutes";
 
 export const RoutesMain = () => {
-
   return (
     <Routes>
-      <Route path="/" element={<LoginPage />} />
-      <Route path="/Register" element={<RegisterPage  />}  />
-      <Route path="/Dashboard" element={<DashboardPage />} />
+      <Route element={<PublicRoute/>}>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/Register" element={<RegisterPage />} />
+      </Route>
+      <Route element={<PrivateRoute/>}>
+        <Route path="/Dashboard" element={<DashboardPage />} />
+      </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
