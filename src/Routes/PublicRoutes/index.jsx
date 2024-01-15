@@ -5,5 +5,6 @@ import { Navigate, Outlet } from "react-router-dom";
 export const PublicRoute = () => {
 
     const { user } =  useContext(userContext);
+    console.log(user);
     return user ? <Navigate to={"/Dashboard"} /> : <Outlet/>;
 }

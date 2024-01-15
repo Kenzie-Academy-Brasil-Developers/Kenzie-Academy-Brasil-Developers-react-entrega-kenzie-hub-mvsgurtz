@@ -19,8 +19,6 @@ export const UserProvider = ({ children }) => {
     const loadUser = async () => {
 
       const token = localStorage.getItem("@TOKEN");
-      const userID =  localStorage.getItem("@Name");
-      const userModule = localStorage.getItem("@CourseModule");
       
       if (token) {
         try {
@@ -88,7 +86,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <userContext.Provider
-      value={{ userLogin, userRegister, loadingLogin, loadingRegister, userLogout }}
+      value={{ userLogin, userRegister, loadingLogin, loadingRegister, userLogout, user}}
     >
       {children}
     </userContext.Provider>
