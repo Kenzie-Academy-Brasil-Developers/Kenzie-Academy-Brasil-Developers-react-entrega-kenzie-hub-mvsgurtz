@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { Modal } from "../Modal";
 import { userContext } from "../../../provider/User";
 
-export const RegisterModal = () => {
+export const TechModal = () => {
   const { setIsVisibleRegister } = useContext(userContext);
 
   return (

@@ -2,9 +2,9 @@ import style from "./style.module.scss";
 import Logo from "../../assets/Logo.svg";
 import { useContext, useState } from "react";
 import { userContext } from "../../provider/User";
-import { TecnoList } from "../../components/Form/TecnoList";
+import { TechList } from "../../components/Form/TechList";
 import Add from "../../assets/Add.svg";
-import { RegisterModal } from "../../components/Form/RegisterModal";
+import { TechModal } from "../../components/Form/TechModal";
 
 export const DashboardPage = ({}) => {
   const [User, setVerificationUser] = useState(localStorage.getItem("@Name"));
@@ -32,10 +32,10 @@ export const DashboardPage = ({}) => {
           </button>
         </div>
         <div className={style.content__info}>
-          <TecnoList />
+          <TechList />
         </div>
         {isVisibleRegister ? (
-          <RegisterModal />
+          <TechModal />
         )  : null}
       </main>
     </>

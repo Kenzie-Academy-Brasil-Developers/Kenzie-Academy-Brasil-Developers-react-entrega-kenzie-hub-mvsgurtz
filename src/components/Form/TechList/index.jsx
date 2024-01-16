@@ -4,7 +4,7 @@ import Delete from "../../../assets/Delete.svg";
 import { useContext } from "react";
 import { userContext } from "../../../provider/User";
 import { EditModal } from "../EditModal";
-export const TecnoList = () => {
+export const TechList = () => {
   const {setIsVisibleEdit, isVisibleEdit} = useContext(userContext);
 
   return (
