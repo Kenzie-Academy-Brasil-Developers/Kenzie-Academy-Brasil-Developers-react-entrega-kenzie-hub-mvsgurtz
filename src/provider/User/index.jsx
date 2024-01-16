@@ -12,6 +12,9 @@ export const UserProvider = ({ children }) => {
 
   const [loadingRegister, setLoadingRegister] = useState("Cadastrar");
 
+  const [isVisibleRegister, setIsVisibleRegister] = useState(false);
+  const [isVisibleEdit, setIsVisibleEdit] = useState(false);
+
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
@@ -86,7 +89,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <userContext.Provider
-      value={{ userLogin, userRegister, loadingLogin, loadingRegister, userLogout, user}}
+      value={{ isVisibleEdit, setIsVisibleEdit, isVisibleRegister, setIsVisibleRegister, userLogin, userRegister, loadingLogin, loadingRegister, userLogout, user}}
     >
       {children}
     </userContext.Provider>

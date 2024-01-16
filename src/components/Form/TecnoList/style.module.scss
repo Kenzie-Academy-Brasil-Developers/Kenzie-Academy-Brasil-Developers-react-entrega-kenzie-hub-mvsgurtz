@@ -1,0 +1,42 @@
+.container {
+  width: 100%;
+}
+
+.content {
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.25rem;
+  background-color: var(--color-grey-4);
+  padding-block: 1rem;
+  padding-inline: 1rem;
+
+  h3 {
+    color: var(--color-grey-0);
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  .content__info {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+
+    p {
+      color: var(--color-grey-1);
+      font-family: var(--font-family);
+      font-size: 0.75rem;
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+  }
+}
