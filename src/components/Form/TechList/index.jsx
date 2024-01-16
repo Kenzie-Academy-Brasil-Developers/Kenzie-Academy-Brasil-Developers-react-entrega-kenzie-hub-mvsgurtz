@@ -4,26 +4,39 @@ import Delete from "../../../assets/Delete.svg";
 import { useContext } from "react";
 import { userContext } from "../../../provider/User";
 import { EditModal } from "../EditModal";
+import { TechContext } from "../../../provider/Tech";
 export const TechList = () => {
-  const {setIsVisibleEdit, isVisibleEdit} = useContext(userContext);
+  const { setIsVisibleEdit, isVisibleEdit } = useContext(userContext);
+
+  const { techList } = useContext(TechContext);
 
   return (
     <>
-    <div className={style.container__one}>
-    <div className={style.container}>
-        <div className={style.content}>
-          <h3>React JS</h3>
-          <div className={style.content__info}>
-            <p>Avançado</p>
-            <button><img src={Edit} alt="" onClick={() =>setIsVisibleEdit(true) } /></button>
-            <button><img src={Delete} alt="" /></button>
-          </div>
-        </div>
+      <div className={style.container}>
+        <ul>
+
+          {techList.map((tech) => (
+            <li className={style.content}>
+              <h3>{tech.title}</h3>
+              <div className={style.content__info}>
+                <p>{tech.status}</p>
+                <button>
+                  <img
+                    src={Edit}
+                    alt=""
+                    onClick={() => setIsVisibleEdit(true)}
+                  />
+                </button>
+                <button>
+                  <img src={Delete} alt="" />
+                </button>
+              </div>
+            </li>
+          ))}
+
+        </ul>
       </div>
-    </div>
-    {isVisibleEdit ? (
-          <EditModal />
-        )  : null}
+      {isVisibleEdit ? <EditModal /> : null}
     </>
   );
 };

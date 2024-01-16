@@ -4,8 +4,6 @@ import { RoutesMain } from "./Routes/Route";
 import "react-toastify/dist/ReactToastify.css";
 
 
-
-
 function App() {
   return (
     <>
