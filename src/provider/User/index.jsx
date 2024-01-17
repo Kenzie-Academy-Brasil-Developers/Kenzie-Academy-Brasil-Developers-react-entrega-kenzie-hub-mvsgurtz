@@ -16,6 +16,7 @@ export const UserProvider = ({ children }) => {
   const [isVisibleEdit, setIsVisibleEdit] = useState(false);
 
   const [user, setUser] = useState(null);
+  const [techList, setTechList] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,13 +31,16 @@ export const UserProvider = ({ children }) => {
               Authorization: `Bearer ${token}`
             }
           })
+          
           setUser(data);
+          setTechList([...data.techs])
+         
           navigate("/Dashboard")
         } catch (error) {
           console.log(error);
-          localStorage.removeItem("@TOKEN");
-          localStorage.removeItem("@Name");
-          localStorage.removeItem("@CourseModule");
+          // localStorage.removeItem("@TOKEN");
+          // localStorage.removeItem("@Name");
+          // localStorage.removeItem("@CourseModule");
         }
       }
       
@@ -89,7 +93,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <userContext.Provider
-      value={{ isVisibleEdit, setIsVisibleEdit, isVisibleRegister, setIsVisibleRegister, userLogin, userRegister, loadingLogin, loadingRegister, userLogout, user, setUser}}
+      value={{ techList, setTechList, isVisibleEdit, setIsVisibleEdit, isVisibleRegister, setIsVisibleRegister, userLogin, userRegister, loadingLogin, loadingRegister, userLogout, user, setUser}}
     >
       {children}
     </userContext.Provider>

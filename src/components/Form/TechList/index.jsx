@@ -14,9 +14,8 @@ export const TechList = () => {
     <>
       <div className={style.container}>
         <ul>
-
           {techList.map((tech) => (
-            <li className={style.content}>
+            <li key={tech.title} className={style.content}>
               <h3>{tech.title}</h3>
               <div className={style.content__info}>
                 <p>{tech.status}</p>
