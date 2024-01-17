@@ -6,7 +6,8 @@ import { userContext } from "../../../provider/User";
 import { EditModal } from "../EditModal";
 import { TechContext } from "../../../provider/Tech";
 export const TechList = () => {
-  const { techList, deleteTech, setEditingTech, editingTech } = useContext(TechContext);
+  const { techList, deleteTech, setEditingTech, editingTech } =
+    useContext(TechContext);
 
   return (
     <>
@@ -17,21 +18,21 @@ export const TechList = () => {
               <h3>{tech.title}</h3>
               <div className={style.content__info}>
                 <p>{tech.status}</p>
-                <button>
-                  <img
-                    src={Edit}
-                    alt=""
-                    onClick={() => setEditingTech(tech)}
-                   
-                  />
-                </button>
-                <button onClick={() => deleteTech(tech.id)}>
-                  <img src={Delete} alt="delete" />
-                </button>
+                <div className={style.info__btn}>
+                  <button>
+                    <img
+                      src={Edit}
+                      alt=""
+                      onClick={() => setEditingTech(tech)}
+                    />
+                  </button>
+                  <button onClick={() => deleteTech(tech.id)}>
+                    <img src={Delete} alt="delete" />
+                  </button>
+                </div>
               </div>
             </li>
           ))}
-
         </ul>
       </div>
       {editingTech ? <EditModal /> : null}
