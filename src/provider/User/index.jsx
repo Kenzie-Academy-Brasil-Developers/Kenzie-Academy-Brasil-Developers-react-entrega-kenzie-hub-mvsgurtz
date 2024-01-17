@@ -1,4 +1,4 @@
-import { createContext, useEffect} from "react";
+import { createContext, useEffect } from "react";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,7 +7,6 @@ import { useState } from "react";
 export const userContext = createContext({});
 
 export const UserProvider = ({ children }) => {
-
   const [loadingLogin, setLoadingLogin] = useState("Entrar");
 
   const [loadingRegister, setLoadingRegister] = useState("Cadastrar");
@@ -21,40 +20,33 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const loadUser = async () => {
-
       const token = localStorage.getItem("@TOKEN");
-      
+
       if (token) {
         try {
-          const {data} = await api.get(`/profile`, {
+          const { data } = await api.get(`/profile`, {
             headers: {
-              Authorization: `Bearer ${token}`
-            }
-          })
+              Authorization: `Bearer ${token}`,
+            },
+          });
           setUser(data);
-          setTechList([...data.techs])
-          navigate("/Dashboard")
+          navigate("/Dashboard");
         } catch (error) {
           console.log(error);
           localStorage.removeItem("@TOKEN");
-          localStorage.removeItem("@Name");
-          localStorage.removeItem("@CourseModule");
+          localStorage.removeItem("@USERID");
         }
       }
-      
     };
     loadUser();
-  }, [])
-
-
+  }, []);
 
   const userLogout = () => {
-    setUser(null)
+    setUser(null);
     navigate("/");
     localStorage.removeItem("@TOKEN");
-    localStorage.removeItem("@Name");
-    localStorage.removeItem("@CourseModule");
-  }
+    localStorage.removeItem("@USERID");
+  };
 
   const userRegister = async (formData) => {
     try {
@@ -76,8 +68,7 @@ export const UserProvider = ({ children }) => {
       setLoadingLogin("Entrando...");
       setUser(data.user);
       localStorage.setItem("@TOKEN", data.token);
-      localStorage.setItem("@Name", data.user.name);
-      localStorage.setItem("@CourseModule", data.user.course_module);
+      localStorage.setItem("@USERID", data.user.id);
       toast.success("Login Efetuado com sucesso!");
       setTimeout(() => {
         navigate("/Dashboard");
@@ -91,7 +82,21 @@ export const UserProvider = ({ children }) => {
 
   return (
     <userContext.Provider
-      value={{ techList, setTechList, isVisibleEdit, setIsVisibleEdit, isVisibleRegister, setIsVisibleRegister, userLogin, userRegister, loadingLogin, loadingRegister, userLogout, user, setUser}}
+      value={{
+        techList,
+        setTechList,
+        isVisibleEdit,
+        setIsVisibleEdit,
+        isVisibleRegister,
+        setIsVisibleRegister,
+        userLogin,
+        userRegister,
+        loadingLogin,
+        loadingRegister,
+        userLogout,
+        user,
+        setUser,
+      }}
     >
       {children}
     </userContext.Provider>

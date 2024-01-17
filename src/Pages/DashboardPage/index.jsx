@@ -7,11 +7,8 @@ import Add from "../../assets/Add.svg";
 import { TechModal } from "../../components/Form/TechModal";
 
 export const DashboardPage = ({}) => {
-  const [User, setVerificationUser] = useState(localStorage.getItem("@Name"));
-  const [Module, setVerificationModule] = useState(
-    localStorage.getItem("@CourseModule")
-  );
-  const { userLogout, setIsVisibleRegister, isVisibleRegister, isVisibleEdit } = useContext(userContext);
+  const {user} = useContext(userContext);
+  const { userLogout, setIsVisibleRegister, isVisibleRegister } = useContext(userContext);
   return (
     <>
       <header>
@@ -21,8 +18,8 @@ export const DashboardPage = ({}) => {
         </div>
       </header>
       <div className={style.introduction__info}>
-        <p className={style.info__person}>Olá, {User}</p>
-        <p className={style.info__module}>{Module}</p>
+        <p className={style.info__person}>Olá, {user.name}</p>
+        <p className={style.info__module}>{user.course_module}</p>
       </div>
       <main className={style.main__container}>
         <div className={style.main__content}>
