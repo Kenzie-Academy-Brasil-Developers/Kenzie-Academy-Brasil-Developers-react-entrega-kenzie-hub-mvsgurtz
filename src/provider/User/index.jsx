@@ -34,13 +34,12 @@ export const UserProvider = ({ children }) => {
           
           setUser(data);
           setTechList([...data.techs])
-         
           navigate("/Dashboard")
         } catch (error) {
           console.log(error);
-          // localStorage.removeItem("@TOKEN");
-          // localStorage.removeItem("@Name");
-          // localStorage.removeItem("@CourseModule");
+          localStorage.removeItem("@TOKEN");
+          localStorage.removeItem("@Name");
+          localStorage.removeItem("@CourseModule");
         }
       }
       
