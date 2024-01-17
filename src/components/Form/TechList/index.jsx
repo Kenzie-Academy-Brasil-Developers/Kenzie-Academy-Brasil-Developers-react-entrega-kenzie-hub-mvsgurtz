@@ -8,7 +8,7 @@ import { TechContext } from "../../../provider/Tech";
 export const TechList = () => {
   const { setIsVisibleEdit, isVisibleEdit } = useContext(userContext);
 
-  const { techList } = useContext(TechContext);
+  const { techList, deleteTech } = useContext(TechContext);
 
   return (
     <>
@@ -26,8 +26,8 @@ export const TechList = () => {
                     onClick={() => setIsVisibleEdit(true)}
                   />
                 </button>
-                <button>
-                  <img src={Delete} alt="" />
+                <button onClick={() => deleteTech(tech.title)}>
+                  <img src={Delete} alt="delete" />
                 </button>
               </div>
             </li>

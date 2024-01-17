@@ -31,7 +31,6 @@ export const UserProvider = ({ children }) => {
               Authorization: `Bearer ${token}`
             }
           })
-          
           setUser(data);
           setTechList([...data.techs])
           navigate("/Dashboard")
