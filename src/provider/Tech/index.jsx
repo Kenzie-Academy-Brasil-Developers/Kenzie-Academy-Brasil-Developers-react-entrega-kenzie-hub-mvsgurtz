@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export const TechContext = createContext({});
 
 export const TechProvider = ({ children }) => {
-  const { techList, setTechList, isVisibleRegister } = useContext(userContext);
+  const { techList, setTechList, setIsVisibleRegister } = useContext(userContext);
   const [editingTech, setEditingTech] = useState(null);
   const navigate = useNavigate();
 
@@ -33,6 +33,7 @@ export const TechProvider = ({ children }) => {
         },
       });
       setTechList([...techList, data]);
+      setIsVisibleRegister(false);
     } catch (error) {
       console.log(error);
     }
